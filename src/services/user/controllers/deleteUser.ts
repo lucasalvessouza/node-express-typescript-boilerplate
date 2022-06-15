@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { Controller } from '../../protocols/controller'
+import { Controller } from '../../interfaces/controller'
 import DeleteUserUseCase from '../../../domain/user/useCases/deleteUser'
 
 export default class DeleteUserController implements Controller {

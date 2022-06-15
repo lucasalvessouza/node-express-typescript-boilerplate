@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { Controller } from '../../protocols/controller'
+import { Controller } from '../../interfaces/controller'
 import CreateUserUseCase from '../../../domain/user/useCases/createUser'
 
 export default class CreateUserController implements Controller {

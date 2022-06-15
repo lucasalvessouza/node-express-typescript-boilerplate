@@ -1,15 +1,15 @@
-import UserFirebaseRepository from '../../../infra/firebase/user'
-import CreateUserController from '../../../services/user/controllers/createUser'
-import CreateUserUseCase from '../../../domain/user/useCases/createUser'
+import UserFirebaseRepository from '../../infra/firebase/user'
+import CreateUserController from './controllers/createUser'
+import CreateUserUseCase from '../../domain/user/useCases/createUser'
 
-import FindAllUsersUseCase from '../../../domain/user/useCases/finderAllUsers'
-import FindAllUsersController from '../../../services/user/controllers/findAllUsers'
-import FindUserByIdUseCase from '../../../domain/user/useCases/findUserById'
-import FindUserByIdController from '../../../services/user/controllers/findUserById'
-import UpdateUserUseCase from '../../../domain/user/useCases/updateUser'
-import UpdateUserController from '../../../services/user/controllers/updateUser'
-import DeleteUserUseCase from '../../../domain/user/useCases/deleteUser'
-import DeleteUserController from '../../../services/user/controllers/deleteUser'
+import FindAllUsersUseCase from '../../domain/user/useCases/finderAllUsers'
+import FindAllUsersController from './controllers/findAllUsers'
+import FindUserByIdUseCase from '../../domain/user/useCases/findUserById'
+import FindUserByIdController from './controllers/findUserById'
+import UpdateUserUseCase from '../../domain/user/useCases/updateUser'
+import UpdateUserController from './controllers/updateUser'
+import DeleteUserUseCase from '../../domain/user/useCases/deleteUser'
+import DeleteUserController from './controllers/deleteUser'
 
 const makeCreateUserFactory = (): any => {
   const userRepository = new UserFirebaseRepository()

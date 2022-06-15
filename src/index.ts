@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
-import userRouter from './main/routes/user'
+import userRouter from './services/user/routes'
 import makeFirebaseSetupFactory from './infra/firebase/setup'
 
 dotenv.config()

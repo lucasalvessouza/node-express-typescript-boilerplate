@@ -5,7 +5,7 @@ import {
   makeFindAllUsersFactory,
   makeFindUserByIdFactory,
   makeUpdateUserFactory,
-} from '../factories/user'
+} from './factories'
 
 const userRouter: Router = Router()
 
