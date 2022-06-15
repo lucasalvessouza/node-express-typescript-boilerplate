@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { Controller } from '../../protocols/controller'
-import CreateUserUseCase from '../useCases/createUser'
+import CreateUserUseCase from '../../../domain/user/useCases/createUser'
 
 export default class CreateUserController implements Controller {
   private useCase: CreateUserUseCase

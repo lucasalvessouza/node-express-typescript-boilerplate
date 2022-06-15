@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { Controller } from '../../protocols/controller'
-import DeleteUserUseCase from '../useCases/deleteUser'
+import DeleteUserUseCase from '../../../domain/user/useCases/deleteUser'
 
 export default class DeleteUserController implements Controller {
   private useCase: DeleteUserUseCase

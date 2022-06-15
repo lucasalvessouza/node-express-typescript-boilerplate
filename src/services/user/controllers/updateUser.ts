@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { Controller } from '../../protocols/controller'
-import UpdateUserUseCase from '../useCases/updateUser'
+import UpdateUserUseCase from '../../../domain/user/useCases/updateUser'
 
 export default class UpdateUserController implements Controller {
   private useCase: UpdateUserUseCase
