@@ -1,11 +1,18 @@
 import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
-import userRouter from './routes/userRouter'
+import userRouter from './main/routes/user'
+import makeFirebaseSetupFactory from './infra/firebase/setup'
 
 dotenv.config()
 
 const app: Express = express()
 const port = process.env.PORT
+
+makeFirebaseSetupFactory()
+
+app.use(express.json())
+
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/healthy_check', (req: Request, res: Response) => {
   res.send()
