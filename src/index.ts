@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
 import userRouter from './services/user/routes'
 import makeFirebaseSetupFactory from './infra/firebase/setup'
+import authRouter from './services/auth/routes'
 
 dotenv.config()
 
@@ -19,6 +20,7 @@ app.get('/healthy_check', (req: Request, res: Response) => {
 })
 
 app.use('/users', userRouter)
+app.use('/auth', authRouter)
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at https://localhost:${port}`)
