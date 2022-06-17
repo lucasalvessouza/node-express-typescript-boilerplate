@@ -6,7 +6,9 @@ import {
   makeFindUserByIdFactory,
   makeUpdateUserFactory,
 } from './factories'
-import AuthenticationMiddleware from '../common/middlewares/authentication'
+import { accessTokenAuthentication } from '../common/middlewares/authentication'
+import { validateRequest } from '../common/middlewares/validation'
+import { userCreateSchema, userUpdateSchema } from './validation-schema'
 
 const userRouter: Router = Router()
 
@@ -16,10 +18,11 @@ const findUserByIdController = makeFindUserByIdFactory()
 const updateUserController = makeUpdateUserFactory()
 const deleteUserController = makeDeleteUserFactory()
 
-userRouter.use(AuthenticationMiddleware.accessToken)
+userRouter.use(accessTokenAuthentication)
 
 userRouter.post(
   '/',
+  validateRequest(userCreateSchema),
   (req, res) => createUserController.handle(req, res)
 )
 userRouter.get(
@@ -32,6 +35,7 @@ userRouter.get(
 )
 userRouter.patch(
   '/:id',
+  validateRequest(userUpdateSchema),
   (req, res) => updateUserController.handle(req, res)
 )
 userRouter.delete(
