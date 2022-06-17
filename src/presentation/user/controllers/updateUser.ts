@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { Controller } from '../../interfaces/controller'
+import { Controller } from '../../common/interfaces/controller'
 import UpdateUserUseCase from '../../../domain/user/useCases/updateUser'
 
 export default class UpdateUserController implements Controller {

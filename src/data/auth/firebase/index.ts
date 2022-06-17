@@ -1,5 +1,5 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import AuthRepository from '../../domain/auth/repository'
+import AuthRepository from '../../../domain/auth/repository'
 
 export default class AuthFirebaseRepository implements AuthRepository {
 

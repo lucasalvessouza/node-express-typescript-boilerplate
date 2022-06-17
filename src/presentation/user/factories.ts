@@ -1,4 +1,4 @@
-import UserFirebaseRepository from '../../infra/firebase/user'
+import UserFirebaseRepository from '../../data/user/firebase'
 import CreateUserController from './controllers/createUser'
 import CreateUserUseCase from '../../domain/user/useCases/createUser'
 

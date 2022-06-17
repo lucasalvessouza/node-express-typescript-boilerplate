@@ -1,6 +1,6 @@
 import LoginUseCase from '../../domain/auth/useCases/login'
 import LoginController from './controllers/login'
-import AuthFirebaseRepository from '../../infra/firebase/auth'
+import AuthFirebaseRepository from '../../data/auth/firebase'
 
 const makeLoginFactory = (): any => {
   const authRepository = new AuthFirebaseRepository()

@@ -1,8 +1,8 @@
 import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
-import userRouter from './services/user/routes'
-import makeFirebaseSetupFactory from './infra/firebase/setup'
-import authRouter from './services/auth/routes'
+import userRouter from './presentation/user/routes'
+import makeFirebaseSetupFactory from './infra/firebase'
+import authRouter from './presentation/auth/routes'
 
 dotenv.config()
 

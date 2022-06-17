@@ -1,7 +1,7 @@
 import { getAuth as getAuthAdmin } from 'firebase-admin/auth'
 
-import { User } from '../../domain/user/model'
-import UserRepository from '../../domain/user/repository'
+import { User } from '../../../domain/user/model'
+import UserRepository from '../../../domain/user/repository'
 
 export default class UserFirebaseRepository implements UserRepository {
   async findById(id: string): Promise<any> {

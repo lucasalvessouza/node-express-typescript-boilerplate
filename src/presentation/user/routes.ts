@@ -6,7 +6,7 @@ import {
   makeFindUserByIdFactory,
   makeUpdateUserFactory,
 } from './factories'
-import AuthenticationMiddleware from '../middlewares/authentication'
+import AuthenticationMiddleware from '../common/middlewares/authentication'
 
 const userRouter: Router = Router()
 
