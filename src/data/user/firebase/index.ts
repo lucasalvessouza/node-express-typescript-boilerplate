@@ -37,7 +37,7 @@ export default class UserFirebaseRepository implements UserRepository {
     return userUpdated
   }
 
-  async delete(id: string): Promise<any> {
+  async delete(id: string): Promise<void> {
     await getAuthAdmin().deleteUser(id)
   }
 

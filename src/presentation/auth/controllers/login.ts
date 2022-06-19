@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { Controller } from '../../common/interfaces/controller'
-import LoginUseCase from '../../../domain/auth/useCases/login'
+import { LoginUseCase } from '../../../domain/auth/useCases/login'
 
 
 export function loginController(useCase: LoginUseCase): Controller {

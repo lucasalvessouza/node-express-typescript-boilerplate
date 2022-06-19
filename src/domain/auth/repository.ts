@@ -1,4 +1,4 @@
 
 export default interface AuthRepository {
-    login(email: string, password: string): Promise<any>
+  login: (email: string, password: string) => Promise<any>
 }

@@ -1,13 +1,14 @@
 import AuthRepository from '../../../domain/auth/repository'
+import { Login } from '../model'
 
-export default class LoginUseCase {
-  private authRepository: AuthRepository
+export interface LoginUseCase {
+  login: (email: string, password: string) => Promise<Login>
+}
 
-  constructor(authRepository: AuthRepository) {
-    this.authRepository = authRepository
-  }
-
-  async login(email: string, password: string): Promise<{ accessToken: string }> {
-    return this.authRepository.login(email, password)
+export function loginUseCase(authRepository: AuthRepository): LoginUseCase {
+  return {
+    login: async (email: string, password: string): Promise<Login> => {
+      return authRepository.login(email, password)
+    }
   }
 }

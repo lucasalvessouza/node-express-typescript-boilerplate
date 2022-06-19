@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { Controller } from '../../common/interfaces/controller'
-import CreateUserUseCase from '../../../domain/user/useCases/createUser'
+import { CreateUserUseCase } from '../../../domain/user/useCases/createUser'
 
 export function createUserController(useCase: CreateUserUseCase): Controller {
   return {

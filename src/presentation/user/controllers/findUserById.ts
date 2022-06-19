@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { Controller } from '../../common/interfaces/controller'
-import FindUserByIdUseCase from '../../../domain/user/useCases/findUserById'
+import { FindUserByIdUseCase } from '../../../domain/user/useCases/findUserById'
 
 
 export function findUserByIdController(useCase: FindUserByIdUseCase): Controller {

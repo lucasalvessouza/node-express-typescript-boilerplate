@@ -1,13 +1,13 @@
 import UserRepository from '../../../domain/user/repository'
 
-export default class DeleteUserUseCase {
-  private userRepository: UserRepository
+export interface DeleteUserUseCase {
+  delete: (id: string) => Promise<any>
+}
 
-  constructor(userRepository: UserRepository) {
-    this.userRepository = userRepository
-  }
-
-  async delete(id: string): Promise<any> {
-    return this.userRepository.delete(id)
+export function deleteUserCase(userRepository: UserRepository): DeleteUserUseCase {
+  return {
+    delete: async (id: string): Promise<void> => {
+      return userRepository.delete(id)
+    }
   }
 }

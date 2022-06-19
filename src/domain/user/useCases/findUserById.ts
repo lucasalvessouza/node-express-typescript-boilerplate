@@ -1,13 +1,14 @@
 import UserRepository from '../../../domain/user/repository'
+import { User } from '../model'
 
-export default class FindUserByIdUseCase {
-  private userRepository: UserRepository
+export interface FindUserByIdUseCase {
+  findById: (id: string) => Promise<User>
+}
 
-  constructor(userRepository: UserRepository) {
-    this.userRepository = userRepository
-  }
-
-  async findById(id: string): Promise<any> {
-    return this.userRepository.findById(id)
+export function findUserByIdUseCase(userRepository: UserRepository): FindUserByIdUseCase {
+  return {
+    findById: async (id: string): Promise<User> => {
+      return userRepository.findById(id)
+    }
   }
 }

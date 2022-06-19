@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { Controller } from '../../common/interfaces/controller'
-import DeleteUserUseCase from '../../../domain/user/useCases/deleteUser'
+import { DeleteUserUseCase } from '../../../domain/user/useCases/deleteUser'
 
 
 export function deleteUserController(useCase: DeleteUserUseCase): Controller {

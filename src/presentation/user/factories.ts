@@ -1,45 +1,45 @@
 import UserFirebaseRepository from '../../data/user/firebase'
 import { createUserController } from './controllers/createUser'
-import CreateUserUseCase from '../../domain/user/useCases/createUser'
+import { createUserUseCase } from '../../domain/user/useCases/createUser'
 
-import FindAllUsersUseCase from '../../domain/user/useCases/finderAllUsers'
+import { findAllUsersUseCase } from '../../domain/user/useCases/finderAllUsers'
 import { findAllUsersController } from './controllers/findAllUsers'
-import FindUserByIdUseCase from '../../domain/user/useCases/findUserById'
+import { findUserByIdUseCase } from '../../domain/user/useCases/findUserById'
 import { findUserByIdController } from './controllers/findUserById'
-import UpdateUserUseCase from '../../domain/user/useCases/updateUser'
+import { updateUserUseCase } from '../../domain/user/useCases/updateUser'
 import { updateUserController } from './controllers/updateUser'
-import DeleteUserUseCase from '../../domain/user/useCases/deleteUser'
+import { deleteUserCase } from '../../domain/user/useCases/deleteUser'
 import { deleteUserController } from './controllers/deleteUser'
 
 const makeCreateUserFactory = (): any => {
   const userRepository = new UserFirebaseRepository()
-  const createUserUseCase = new CreateUserUseCase(userRepository)
+  const createUserUseCaseInstance = createUserUseCase(userRepository)
 
-  return createUserController(createUserUseCase)
+  return createUserController(createUserUseCaseInstance)
 }
 
 const makeFindAllUsersFactory = (): any => {
   const userRepository = new UserFirebaseRepository()
-  const findAllUsersUseCase = new FindAllUsersUseCase(userRepository)
-  return findAllUsersController(findAllUsersUseCase)
+  const findAllUsersUseCaseInstance = findAllUsersUseCase(userRepository)
+  return findAllUsersController(findAllUsersUseCaseInstance)
 }
 
 const makeFindUserByIdFactory = (): any => {
   const userRepository = new UserFirebaseRepository()
-  const findUserByIdUseCase = new FindUserByIdUseCase(userRepository)
-  return findUserByIdController(findUserByIdUseCase)
+  const findUserByIdUseCaseInstance = findUserByIdUseCase(userRepository)
+  return findUserByIdController(findUserByIdUseCaseInstance)
 }
 
 const makeUpdateUserFactory = (): any => {
   const userRepository = new UserFirebaseRepository()
-  const updateUserUseCase = new UpdateUserUseCase(userRepository)
-  return updateUserController(updateUserUseCase)
+  const updateUserUseCaseInstance = updateUserUseCase(userRepository)
+  return updateUserController(updateUserUseCaseInstance)
 }
 
 const makeDeleteUserFactory = (): any => {
   const userRepository = new UserFirebaseRepository()
-  const deleteUserUseCase = new DeleteUserUseCase(userRepository)
-  return deleteUserController(deleteUserUseCase)
+  const deleteUserUseCaseInstance = deleteUserCase(userRepository)
+  return deleteUserController(deleteUserUseCaseInstance)
 }
 
 export {

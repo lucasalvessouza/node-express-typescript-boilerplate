@@ -1,10 +1,9 @@
-import { User } from './model'
+import { User, UserWithPassword } from './model'
 
-/* eslint-disable no-unused-vars */
 export default interface UserRepository {
-    create(user: User): Promise<any>
-    findById(id: string): Promise<any>
-    findAll(): Promise<any>
-    update(id: string, user: User): Promise<any>
-    delete(id: string): Promise<any>
+  create: (user: UserWithPassword) => Promise<User>
+  findById: (id: string) => Promise<User>
+  findAll: () => Promise<User[]>
+  update: (id: string, user: User) => Promise<User>
+  delete: (id: string) => Promise<void>
 }

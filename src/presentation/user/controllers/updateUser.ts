@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { Controller } from '../../common/interfaces/controller'
-import UpdateUserUseCase from '../../../domain/user/useCases/updateUser'
+import { UpdateUserUseCase } from '../../../domain/user/useCases/updateUser'
 
 
 export function updateUserController(useCase: UpdateUserUseCase): Controller {

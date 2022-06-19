@@ -1,14 +1,14 @@
 import { User } from '../../../domain/user/model'
 import UserRepository from '../../../domain/user/repository'
 
-export default class UpdateUserUseCase {
-  private userRepository: UserRepository
+export interface UpdateUserUseCase {
+  update: (id: string, user: User) => Promise<any>
+}
 
-  constructor(userRepository: UserRepository) {
-    this.userRepository = userRepository
-  }
-
-  async update(id: string, user: User): Promise<any> {
-    return this.userRepository.update(id, user)
+export function updateUserUseCase(userRepository: UserRepository): UpdateUserUseCase {
+  return {
+    update: async (id: string, user: User): Promise<any> => {
+      return userRepository.update(id, user)
+    }
   }
 }

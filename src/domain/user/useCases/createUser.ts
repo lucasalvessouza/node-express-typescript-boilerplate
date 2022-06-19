@@ -1,14 +1,14 @@
 import { User } from '../../../domain/user/model'
 import UserRepository from '../../../domain/user/repository'
 
-export default class CreateUserUseCase {
-  private userRepository: UserRepository
+export interface CreateUserUseCase {
+  create: (user: User) => Promise<any>
+}
 
-  constructor(userRepository: UserRepository) {
-    this.userRepository = userRepository
-  }
-
-  async create(user: User): Promise<any> {
-    return this.userRepository.create(user)
+export function createUserUseCase(userRepository: UserRepository): CreateUserUseCase {
+  return {
+    create: async (user: User): Promise<User> => {
+      return userRepository.create(user)
+    }
   }
 }
