@@ -24,13 +24,16 @@ This boilerplate is using the DDD design pattern, and we have the following stru
 │   │   ├── interfaces
 │   │   ├── middlewares
 │   │   │   ├── authentication
+│   │   │   ├── validation
 │   ├── user
 │   │   ├── controllers (all controllers to use on routes)
 │   │   ├── factories.ts (factories to build the instances for repositories, use cases and controllers)
 │   │   ├── routes.ts (user routes)
+│   │   ├── validation-schema.ts (schemas validation)
 │   ├── auth
 │   │   ├── controllers (all controllers to use on routes)
 │   │   ├── factories.ts (factories to build the instances for repositories, use cases and controllers)
 │   │   ├── routes.ts (auth routes)
+│   │   ├── validation-schema.ts (schemas validation)
 ├── index.ts (application setup)
 ```
