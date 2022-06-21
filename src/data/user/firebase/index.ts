@@ -1,6 +1,6 @@
 import { getAuth as getAuthAdmin } from 'firebase-admin/auth'
 
-import { User } from '../../../domain/user/model'
+import { User, UserToUpdate, UserWithPassword } from '../../../domain/user/model'
 import UserRepository from '../../../domain/user/repository'
 
 export function userFirebaseRepository(): UserRepository {
@@ -12,6 +12,7 @@ export function userFirebaseRepository(): UserRepository {
           id: user.uid,
           email: user.email || '',
           name: user.displayName || '',
+          role: user.customClaims?.role || '',
         }
       } catch (error: any) {
         if (error?.code === 'auth/user-not-found') {
@@ -27,10 +28,11 @@ export function userFirebaseRepository(): UserRepository {
         id: user.uid,
         email: user.email || '',
         name: user.displayName || '',
+        role: user.customClaims?.role || '',
       }))
     },
   
-    update: async (id: string, user: User): Promise<User>  => {
+    update: async (id: string, user: UserToUpdate): Promise<User>  => {
       const userUpdated = await getAuthAdmin().updateUser(id, {
         ...user,
         displayName: user.name,
@@ -39,6 +41,7 @@ export function userFirebaseRepository(): UserRepository {
         id: userUpdated.uid,
         email: userUpdated.email || '',
         name: userUpdated.displayName || '',
+        role: userUpdated.customClaims?.role || '',
       }
     },
   
@@ -46,14 +49,15 @@ export function userFirebaseRepository(): UserRepository {
       await getAuthAdmin().deleteUser(id)
     },
   
-    create: async (user: User): Promise<any> => {
+    create: async (user: UserWithPassword): Promise<any> => {
       const userCreated = await getAuthAdmin().createUser({
         displayName: user.name,
         email: user.email,
         password: user.password,
         emailVerified: false,
-        disabled: false,
+        disabled: false
       })
+      await getAuthAdmin().setCustomUserClaims(userCreated.uid, {role: user.role})
       return userCreated
     }
   }
