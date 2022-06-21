@@ -30,12 +30,16 @@ export function userFirebaseRepository(): UserRepository {
       }))
     },
   
-    update: async (id: string, user: User): Promise<any>  => {
+    update: async (id: string, user: User): Promise<User>  => {
       const userUpdated = await getAuthAdmin().updateUser(id, {
         ...user,
         displayName: user.name,
       })
-      return userUpdated
+      return {
+        id: userUpdated.uid,
+        email: userUpdated.email || '',
+        name: userUpdated.displayName || '',
+      }
     },
   
     delete: async (id: string): Promise<void> => {

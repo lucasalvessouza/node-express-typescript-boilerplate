@@ -1,15 +1,46 @@
 import { Schema } from 'joi'
 
+type ValidationSchema = {
+  body?: Schema
+  params?: Schema
+  query?: Schema
+}
 
-export const validateRequest = (schema: Schema) => (req: any, res: any, next: any) => {
-  const { error } = schema.validate(req.body, { abortEarly: false })
+type ErrorSchema = {
+  body?: string
+  params?: string
+  query?: string
+}
+
+export const validateRequest = (schema: ValidationSchema) => (req: any, res: any, next: any) => {
+  const bodyValidation = schema.body?.validate(req.body, { abortEarly: false })
+  const paramsValidation = schema.params?.validate(req.params, { abortEarly: false })
+  const queryValidation = schema.query?.validate(req.query, { abortEarly: false })
+
+  let validationErrors: ErrorSchema = {}
+  if (bodyValidation?.error) {
+    validationErrors = {
+      ...validationErrors,
+      body: bodyValidation.error.details.map(detail => detail.message).join(',')
+    }
+  }
+
+  if (paramsValidation?.error) {
+    validationErrors = {
+      ...validationErrors,
+      params: paramsValidation.error.details.map(detail => detail.message).join(',')
+    }
+  }
+
+  if (queryValidation?.error) {
+    validationErrors = {
+      ...validationErrors,
+      query: queryValidation.error.details.map(detail => detail.message).join(',')
+    }
+  }
     
-  if (error) {
-    const { details } = error
-    const message = details.map(i => i.message).join(',')
-    return res.status(400).send({
-      error: message
-    })
+  if (Object.keys(validationErrors).length > 0) {
+    return res.status(400).send(validationErrors)
   }
   next()
 }

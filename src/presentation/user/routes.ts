@@ -8,7 +8,13 @@ import {
 } from './factories'
 import { accessTokenAuthentication } from '../common/middlewares/authentication'
 import { validateRequest } from '../common/middlewares/validation'
-import { userCreateSchema, userUpdateSchema } from './validation-schema'
+import {
+  userCreateBodySchema,
+  userDeleteSchema,
+  userFindByIdParamsSchema,
+  userUpdateParamsSchema,
+  userUpdateBodySchema
+} from './validation-schema'
 
 const userRouter: Router = Router()
 
@@ -22,7 +28,7 @@ userRouter.use(accessTokenAuthentication)
 
 userRouter.post(
   '/',
-  validateRequest(userCreateSchema),
+  validateRequest({ body: userCreateBodySchema }),
   (req, res) => createUserController.handle(req, res)
 )
 userRouter.get(
@@ -31,15 +37,17 @@ userRouter.get(
 )
 userRouter.get(
   '/:id', 
+  validateRequest({ params: userFindByIdParamsSchema }),
   (req, res) => findUserByIdController.handle(req, res)
 )
 userRouter.patch(
   '/:id',
-  validateRequest(userUpdateSchema),
+  validateRequest({ params: userUpdateParamsSchema, body: userUpdateBodySchema }),
   (req, res) => updateUserController.handle(req, res)
 )
 userRouter.delete(
   '/:id',
+  validateRequest({ params: userDeleteSchema }),
   (req, res) => deleteUserController.handle(req, res)
 )
 
