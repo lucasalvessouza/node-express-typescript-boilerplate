@@ -6,7 +6,7 @@ import {
   makeFindUserByIdFactory,
   makeUpdateUserFactory,
 } from './factories'
-import { accessTokenAuthentication } from '../common/middlewares/authentication'
+import { accessTokenAuthentication, validateUserRole } from '../common/middlewares/authentication'
 import { validateRequest } from '../common/middlewares/validation'
 import {
   userCreateBodySchema,
@@ -15,6 +15,7 @@ import {
   userUpdateParamsSchema,
   userUpdateBodySchema
 } from './validation-schema'
+import { UserRole } from '../../domain/user/model'
 
 const userRouter: Router = Router()
 
@@ -28,6 +29,7 @@ userRouter.use(accessTokenAuthentication)
 
 userRouter.post(
   '/',
+  validateUserRole(UserRole.ADMIN),
   validateRequest({ body: userCreateBodySchema }),
   (req, res) => createUserController.handle(req, res)
 )
@@ -42,11 +44,13 @@ userRouter.get(
 )
 userRouter.patch(
   '/:id',
+  validateUserRole(UserRole.ADMIN),
   validateRequest({ params: userUpdateParamsSchema, body: userUpdateBodySchema }),
   (req, res) => updateUserController.handle(req, res)
 )
 userRouter.delete(
   '/:id',
+  validateUserRole(UserRole.ADMIN),
   validateRequest({ params: userDeleteSchema }),
   (req, res) => deleteUserController.handle(req, res)
 )

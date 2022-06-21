@@ -1,5 +1,6 @@
 import { Response, NextFunction } from 'express'
 import { getAuth as getAuthAdmin } from 'firebase-admin/auth'
+import { UserRole } from '../../../domain/user/model';
 
 
 export const accessTokenAuthentication = async (
@@ -17,3 +18,15 @@ export const accessTokenAuthentication = async (
     response.status(401).send('Unauthorized');
   }
 }
+
+export const validateUserRole = (role: UserRole) => async (
+  request: any, response: Response, next: NextFunction) => {
+  try {
+    if(request.user?.role !== role) {
+      return response.status(401).send('Unauthorized');
+    }
+    next();
+  } catch (error) {
+    response.status(401).send('Unauthorized');
+  }
+} 
