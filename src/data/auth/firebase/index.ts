@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
 import { Login } from '../../../domain/auth/model'
 import AuthRepository from '../../../domain/auth/repository'
 
@@ -13,6 +13,11 @@ export function authFirebaseRepository(): AuthRepository {
       return {
         accessToken
       }
-    }
+    },
+
+    sendPasswordResetEmail: async (email: string) => {
+      await sendPasswordResetEmail(getAuth(), email)
+      return Promise.resolve()
+    },
   }
 }
