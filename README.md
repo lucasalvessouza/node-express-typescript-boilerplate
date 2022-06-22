@@ -1,6 +1,6 @@
 ## Node + Express + Typescript + Firebase
 
-This boilerplate is using the DDD design pattern, and we have the following structure:
+This boilerplate is based on clean architecture, and we have the following structure:
 
 ```
 ├── domain (DEFINITION OF EACH ENTITY)
@@ -37,3 +37,15 @@ This boilerplate is using the DDD design pattern, and we have the following stru
 │   │   ├── validation-schema.ts (schemas validation)
 ├── index.ts (application setup)
 ```
+
+### Firebase usage:
+- user authentication by email and password.
+- user CRUD.
+- accessToken validation.
+- user password recovery email (the another steps to change the password are using the own firebase system)
+
+### How to run the project?
+- `npm install`
+- paste your credentials json as a `serviceAccountKey.json` file.
+- copy `.env.dev` to `.env`
+- `npm start`
